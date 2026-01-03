@@ -72,6 +72,16 @@ class _HomePageState extends State<HomePage> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xFF050A30),
+        image: DecorationImage(
+          image: const NetworkImage(
+            'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop',
+          ),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            const Color(0xFF050A30).withOpacity(0.7),
+            BlendMode.darken,
+          ),
+        ),
       ),
       child: Stack(
         children: [
@@ -298,6 +308,12 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color: Colors.blue.shade900,
                         borderRadius: BorderRadius.circular(40),
+                        image: const DecorationImage(
+                          image: NetworkImage(
+                            'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
