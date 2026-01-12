@@ -38,14 +38,14 @@ class ContactPage extends StatelessWidget {
             _contactCard(
               icon: Icons.phone_android_rounded,
               title: 'WhatsApp & Téléphone',
-              subtitle: '+223 XX XX XX XX',
+              subtitle: '+223 98 04 27 15',
               color: Colors.green.shade500,
             ),
             const SizedBox(height: 20),
             _contactCard(
               icon: Icons.email_rounded,
               title: 'Email',
-              subtitle: 'contact@diliprestige.com',
+              subtitle: 'diliprestigeservice@.com',
               color: Colors.blue.shade500,
             ),
             const SizedBox(height: 40),
