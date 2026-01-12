@@ -19,8 +19,8 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      # On retire le base-href spécifique pour laisser Flutter utiliser le chemin par défaut
-      - run: flutter build web --release
+      # On rajoute imperativement le base-href correspondant au nom du dépôt GitHub
+      - run: flutter build web --release --base-href "/diliprestigeweb/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
