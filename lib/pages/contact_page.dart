@@ -38,7 +38,7 @@ class ContactPage extends StatelessWidget {
             _contactCard(
               icon: Icons.phone_android_rounded,
               title: 'WhatsApp & Téléphone',
-              subtitle: '+223 98 04 27 15',
+              subtitle: '+223 73 09 96 32',
               color: Colors.green.shade500,
             ),
             const SizedBox(height: 20),

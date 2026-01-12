@@ -6,34 +6,23 @@ class ImpressionGoodiesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 250,
-            pinned: true,
-            backgroundColor: Colors.teal.shade800,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Impression & Goodies', style: TextStyle(fontWeight: FontWeight.bold)),
-              background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.teal.shade900, Colors.teal.shade400],
-                  ),
-                ),
-                child: Icon(Icons.print_rounded, size: 100, color: Colors.white.withOpacity(0.2)),
-              ),
-            ),
-          ),
+          _buildSliverAppBar(),
           SliverPadding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                _buildSectionTitle('Donnez vie à vos idées'),
-                const SizedBox(height: 20),
-                _buildProductGrid(),
+                _buildHeader(),
                 const SizedBox(height: 40),
-                _buildQualityBanner(),
+                _buildSectionTitle('Nos Produits Phares'),
+                const SizedBox(height: 20),
+                _buildProductGallery(),
+                const SizedBox(height: 60),
+                _buildQualitySection(),
+                const SizedBox(height: 60),
+                _buildCTASection(context),
               ]),
             ),
           ),
@@ -42,77 +31,266 @@ class ImpressionGoodiesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
-    return Text(
-      title,
-      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF004D40)),
+  Widget _buildSliverAppBar() {
+    return SliverAppBar(
+      expandedHeight: 300,
+      pinned: true,
+      stretch: true,
+      backgroundColor: const Color(0xFF004D40),
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        title: const Text(
+          'IMPRESSION & GOODIES',
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.5,
+            fontSize: 16,
+          ),
+        ),
+        background: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.network(
+              'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop',
+              fit: BoxFit.cover,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.3),
+                    const Color(0xFF004D40).withOpacity(0.8),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildProductGrid() {
+  Widget _buildHeader() {
+    return Column(
+      children: [
+        const Text(
+          'Personnalisez votre Image',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF004D40),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Container(
+          width: 60,
+          height: 4,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          'Des supports de communication de haute qualité pour votre entreprise ou vos événements.',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF004D40),
+      ),
+    );
+  }
+
+  Widget _buildProductGallery() {
     final products = [
-      {'name': 'T-shirts', 'icon': Icons.checkroom},
-      {'name': 'Mugs & Bols', 'icon': Icons.coffee},
-      {'name': 'Flyers & Affiches', 'icon': Icons.layers},
-      {'name': 'Stickers', 'icon': Icons.label},
-      {'name': 'Calendriers', 'icon': Icons.calendar_month},
-      {'name': 'Goodies Event', 'icon': Icons.celebration},
+      {
+        'name': 'T-shirts Premium',
+        'image': 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1974&auto=format&fit=crop',
+        'desc': 'Impression DTF et sérigraphie haute définition.'
+      },
+      {
+        'name': 'Mugs & Bols',
+        'image': 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=2070&auto=format&fit=crop',
+        'desc': 'Céramique résistante, marquage inaltérable.'
+      },
+      {
+        'name': 'Flyers & Supports',
+        'image': 'https://images.unsplash.com/photo-1560053608-13721e0d69e8?q=80&w=2070&auto=format&fit=crop',
+        'desc': 'Papier glacé, finitions mates ou brillantes.'
+      },
+      {
+        'name': 'Goodies Event',
+        'image': 'https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2070&auto=format&fit=crop',
+        'desc': 'Stylos, porte-clés, sacs et cadeaux d\'entreprise.'
+      },
     ];
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 1.5,
-      ),
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)],
-            border: Border.all(color: Colors.teal.shade50),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        int crossAxisCount = constraints.maxWidth > 800 ? 2 : 1;
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            childAspectRatio: 1.2,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(products[index]['icon'] as IconData, color: Colors.teal, size: 30),
-              const SizedBox(height: 8),
-              Text(
-                products[index]['name'] as String,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            return _buildProductCard(products[index]);
+          },
         );
       },
     );
   }
 
-  Widget _buildQualityBanner() {
+  Widget _buildProductCard(Map<String, String> product) {
     return Container(
-      padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Column(
-        children: const [
-          Icon(Icons.high_quality, color: Colors.amber, size: 40),
-          SizedBox(height: 16),
-          Text(
-            'Haute Qualité d\'Impression',
-            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 3,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+              child: Image.network(
+                product['image']!,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          SizedBox(height: 10),
-          Text(
-            'Nous utilisons les meilleures technologies pour un rendu professionnel et durable sur tous vos supports.',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white60),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    product['name']!,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF004D40),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    product['desc']!,
+                    style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQualitySection() {
+    return Container(
+      padding: const EdgeInsets.all(40),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: Colors.teal.shade50, width: 2),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.verified_user, color: Colors.amber, size: 48),
+                const SizedBox(height: 20),
+                const Text(
+                  'Notre Engagement Qualité',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Nous utilisons les dernières technologies d\'impression (Sublimation, DTF, Impression UV) pour garantir des couleurs éclatantes et une durabilité exceptionnelle sur tous vos supports.',
+                  style: TextStyle(color: Colors.grey[600], fontSize: 16, height: 1.6),
+                ),
+              ],
+            ),
+          ),
+          if (true) // Hidden on small screens naturally by Layout if needed
+            const SizedBox(width: 40),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCTASection(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(60),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF004D40), Color(0xFF00695C)],
+        ),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Column(
+        children: [
+          const Text(
+            'Besoin d\'un devis personnalisé ?',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Réponse rapide sous 24h pour tous vos projets d\'impression.',
+            style: TextStyle(color: Colors.white70, fontSize: 16),
+          ),
+          const SizedBox(height: 40),
+          ElevatedButton(
+            onPressed: () {
+              // Navigation vers contact
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.amber,
+              foregroundColor: const Color(0xFF004D40),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            ),
+            child: const Text(
+              'DEMANDER UN DEVIS GRATUIT',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
