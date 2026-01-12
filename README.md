@@ -1,16 +1,31 @@
-# diliprestigeweb
+# 🚀 Dili Prestige - Excellence & Innovation au Mali
 
-A new Flutter project.
+Bienvenue sur la plateforme officielle de **Dili Prestige**, votre partenaire de confiance pour la formation professionnelle et la communication visuelle à Bamako.
 
-## Getting Started
+## 🌍 Accéder au Site Web
+Découvrez notre univers complet ici :
+👉 **[https://carbousqua.github.io/diliprestigeweb/](https://carbousqua.github.io/diliprestigeweb/)**
 
-This project is a starting point for a Flutter application.
+## 🛠 Nos Domaines d'Expertise
 
-A few resources to get you started if this is your first Flutter project:
+### 💻 Formation Informatique
+- Bureautique (Pack Office)
+- Programmation (Python, Flutter)
+- Design Graphique & Maintenance
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 🇬🇧 Formation Anglais
+- Programmes immersifs
+- Anglais professionnel et conversationnel
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🖨 Impression & Goodies
+- Personnalisation de T-shirts, Mugs et Bols
+- Impression de supports marketing (Flyers, Affiches)
+- Cadeaux d'entreprise personnalisés
+
+## 📞 Nous Contacter
+- 📍 **Localisation** : Bamako, Mali
+- 💬 **WhatsApp** : +223 73 09 96 32
+- 📧 **Email** : diliprestigeservice@gmail.com
+
+---
+*Fait avec ❤️ par Dili Prestige.*
