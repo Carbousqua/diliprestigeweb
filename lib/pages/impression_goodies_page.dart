@@ -414,3 +414,189 @@ class _InteractiveServicesSectionState
     );
   }
 }
+import 'package:flutter/material.dart';
+
+class ImpressionServicesSection extends StatefulWidget {
+  const ImpressionServicesSection({super.key});
+
+  @override
+  State<ImpressionServicesSection> createState() =>
+      _ImpressionServicesSectionState();
+}
+
+class _ImpressionServicesSectionState
+    extends State<ImpressionServicesSection> {
+  int hoveredIndex = -1;
+
+  final services = [
+    {
+      'title': 'T-shirts, Polos & Sweats',
+      'icon': Icons.checkroom,
+      'desc': 'Impression DTF et sérigraphie textile.',
+    },
+    {
+      'title': 'Casquettes',
+      'icon': Icons.sports_baseball,
+      'desc': 'Personnalisation durable et élégante.',
+    },
+    {
+      'title': 'Bols & Assiettes',
+      'icon': Icons.restaurant,
+      'desc': 'Impression sublimation haute qualité.',
+    },
+    {
+      'title': 'Création de Logo',
+      'icon': Icons.brush,
+      'desc': 'Identité visuelle professionnelle.',
+    },
+    {
+      'title': 'Conception de Flyers',
+      'icon': Icons.campaign,
+      'desc': 'Design moderne et publicitaire.',
+    },
+    {
+      'title': 'Cartes de Visite',
+      'icon': Icons.credit_card,
+      'desc': 'Cartes élégantes et professionnelles.',
+    },
+    {
+      'title': 'Cartes de Mariage',
+      'icon': Icons.favorite,
+      'desc': 'Designs uniques pour vos événements.',
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Nos Services d’Impression',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF004D40),
+          ),
+        ),
+        const SizedBox(height: 30),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            int crossAxisCount = constraints.maxWidth > 1100
+                ? 4
+                : constraints.maxWidth > 800
+                ? 3
+                : 2;
+
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: services.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                childAspectRatio: 1.1,
+              ),
+              itemBuilder: (context, index) {
+                final isHovered = hoveredIndex == index;
+
+                return MouseRegion(
+                  onEnter: (_) => setState(() => hoveredIndex = index),
+                  onExit: (_) => setState(() => hoveredIndex = -1),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    padding: const EdgeInsets.all(20),
+                    transform: isHovered
+                        ? (Matrix4.identity()..scale(1.05))
+                        : Matrix4.identity(),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: isHovered
+                              ? Colors.black26
+                              : Colors.black12,
+                          blurRadius: isHovered ? 25 : 12,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                      border: Border.all(
+                        color: isHovered
+                            ? Colors.amber
+                            : Colors.transparent,
+                        width: 2,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          services[index]['icon'] as IconData,
+                          size: 42,
+                          color: isHovered
+                              ? Colors.amber
+                              : const Color(0xFF004D40),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          services[index]['title']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        AnimatedOpacity(
+                          duration: const Duration(milliseconds: 200),
+                          opacity: isHovered ? 1 : 0,
+                          child: Text(
+                            services[index]['desc']!,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        AnimatedOpacity(
+                          duration: const Duration(milliseconds: 200),
+                          opacity: isHovered ? 1 : 0,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.amber,
+                              foregroundColor:
+                              const Color(0xFF004D40),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18,
+                                vertical: 10,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: const Text(
+                              'Voir détails',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
