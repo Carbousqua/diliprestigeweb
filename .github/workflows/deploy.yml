@@ -19,7 +19,8 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter build web --release --base-href "/diliprestigeweb/"
+      # On retire le base-href spécifique pour laisser Flutter utiliser le chemin par défaut
+      - run: flutter build web --release
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
