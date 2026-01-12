@@ -45,7 +45,7 @@ class ContactPage extends StatelessWidget {
             _contactCard(
               icon: Icons.email_rounded,
               title: 'Email',
-              subtitle: 'diliprestigeservice@.com',
+              subtitle: 'diliprestigeservice@gmail.com',
               color: Colors.blue.shade500,
             ),
             const SizedBox(height: 40),
